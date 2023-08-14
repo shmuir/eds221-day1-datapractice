@@ -1,0 +1,26 @@
+---
+title: "Toolik Chlorophyll Concentations"
+author: "Sam"
+format: html
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+chl <- read_csv(here::here("data", "toolik_chlorophyll.csv"), na = ".") %>%
+  clean_names() %>%
+  rename(chl_a = active_chl_a_ug_l)
+```
+
+```{r}
+skimr::skim(chl)
+```
+
+```{r}
+ggplot(chl, aes(x = chl_a)) +
+  geom_histogram()
+```
+
